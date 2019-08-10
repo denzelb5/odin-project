@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <title>Rock, Paper, Scissors Game</title>
+    <meta charset="utf-8"></meta>
+    
+  </head>
+
+  <body>
+    <script>
+        let playerScore = 0;
+        let computerScore = 0;
+        const win = "You win!";
+        const lose = "You lose!";
+        const tie = "It's a tie!"
+        const playerPoint = "You scored 1 point!";
+        const computerPoint = "The computer scored 1 point!"
+
+        function computerPlay() {
+            let x= Math.random();
+            if (x<=0.34) {
+                computerChoice= "rock";
+                return computerChoice;
+            } else if (x<=0.67) {
+                computerChoice="paper"; 
+                return computerChoice;
+            } else {
+                computerChoice= "scissors"; 
+                return computerChoice;
+                }
+        }
+
+        let userSelection = () => {
+            let playerChoice = prompt("Please enter your choice: Rock, Paper, or Scissors").toLowerCase();
+            if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
+            return playerChoice;
+            } else {
+                alert("Inappropriate choice.  Please call our helpline at 0118 999 881 999 119 725 ... 3");
+            }
+        } 
+        
+        //let items = ["rock", "paper", "scissors"];
+        //let items1 = ["rock", "paper", "scissors"];
+        //console.log(ComputerPlay(items))
+        //console.log(userSelection(items1));
+
+        let playRound = (playerSelection, computerSelection) => {
+            playerSelection = userSelection();
+            computerSelection = computerPlay();
+            
+            alert("You chose " + playerSelection + " and the computer chose " + computerSelection);
+            if  (playerSelection === "rock" && computerSelection === "scissors") {
+                alert(win + ' ' + playerPoint);
+                return win;
+            } else if (playerSelection === "paper" && computerSelection === "rock") {
+                alert(win + ' ' + playerPoint);
+                return win;
+            } else if (playerSelection === "scissors" && computerSelection === "paper") {
+                alert(win + ' ' + playerPoint);
+                return win;
+            } else if (playerSelection === "rock" && computerSelection === "paper") {
+                alert(lose + ' ' + computerPoint);
+                return lose;
+            } else if (playerSelection === "scissors" && computerSelection === "rock") {
+                alert(lose + ' ' + computerPoint);
+                return lose;
+            } else if (playerSelection === "paper" && computerSelection === "scissors") {
+                alert(lose + ' ' + computerPoint);
+                return lose;
+            } else if (playerSelection === computerSelection) {
+                alert(tie); 
+                return "No points scored.";
+            }
+            
+        }
+
+
+
+console.log(playRound())
+
+let keepScore = (point) => {
+    point = playRound();
+    if (point === win) {
+        alert("You have " + playerScore + " points and the computer has " + computerScore);
+        playerScore += 1;
+    } else if (point === lose) {
+        alert("The computer has " + computerScore + " points and you have " + playerScore + " points.");
+        computerScore +=1;
+    } else {
+        alert("No points added");
+        playerScore += 0;
+        computerScore += 0;
+    }
+    console.log(playerScore);
+    console.log(computerScore);
+}
+    
+let clearScore = () => {
+    playerScore = 0;
+    computerScore = 0;
+}
+    let game = (rounds) => {
+        do {
+          let player = userSelection();
+          let computer = computerPlay();
+          let gamePlay = playRound(player, computer);
+          keepScore(point);
+        if (result !== tie) {
+            rounds ++;
+        }
+        }
+        while (rounds < 5);
+          let winner = win + ' You have ' + playerScore + ' and the computer has ' + computerScore + ' out of 5.';
+          let loser = lose + ' You have ' + playerScore + ' and the computer has ' + computerScore + ' out of 5.';
+          if (playerScore > computerScore) {
+              alert(winner);
+              console.log(winner);
+          } else if (playerScore < computerScore) {
+              alert(loser);
+              console.log(loser);
+          } else {
+              "It's a tie.  Try again."
+          }
+        clearScore();
+    }
+    console.log(game(0));
+    </script>
+  </body>
+
+</html>
